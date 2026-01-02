@@ -117,3 +117,12 @@ spec:
 ```
 
 This Pod will be created inside the dev namespace, not default.
+
+### 🔍 How to See Namespaces
+```
+kubectl get namespaces
+```
+List Pods in a namespace:
+```
+kubectl get pods -n dev
+```
