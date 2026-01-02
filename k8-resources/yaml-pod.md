@@ -1,4 +1,4 @@
-# YAML Basics → Kubernetes Pod (Beginner Guide)
+# YAML Basics → Kubernetes Pod
 
 ## 1. What is YAML?
 
@@ -87,7 +87,7 @@ What this does:
 - Runs one container
 - Uses the nginx image
 
-## 6️⃣ What is inside spec (Beginner View)
+## 6️⃣ What is inside spec 
 
 For now, remember only this:
 ```
@@ -187,7 +187,7 @@ It does not mean:
 ---
 ## 1️⃣2️⃣ Where Can We Access It From?
 | From where                 | Accessible |
-|---------------------------|------------|
+|----------------------------|------------|
 | Inside the same Pod        | ✅ Yes     |
 | From another Pod           | ✅ Yes     |
 | From laptop / browser      | ❌ No      |
