@@ -76,6 +76,7 @@ A Namespace:
 - Is NOT a node
 - Is NOT a cluster
 - Is NOT a network boundary  
+
 It is only:
 > A logical grouping of Kubernetes resources
 
@@ -89,3 +90,30 @@ Kubernetes creates some namespaces automatically:
 | kube-system     | Kubernetes internal components                  |
 | kube-public     | Publicly readable resources                     |
 | kube-node-lease | Node heartbeat and health information           |
+
+### 📄 Create a Namespace (Simple YAML)
+```
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev
+```
+
+Apply it:
+```
+kubectl apply -f namespace.yaml
+```
+### 📄 Create a Pod Inside a Namespace
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  namespace: dev
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+```
+
+This Pod will be created inside the dev namespace, not default.
