@@ -212,3 +212,8 @@ Meaning:
 
 Again:
 >Kubernetes stores it, external system acts on it.
+
+
+## Interview One-Liner
+
+**Labels are queryable and used by Kubernetes objects like Services and Deployments, whereas Annotations are not queryable and are used only to store metadata.**
