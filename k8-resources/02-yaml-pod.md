@@ -30,13 +30,13 @@ name: nginx-pod
 ```
 
 ### 2.3 Lists use -
+**Use spaces, not tabs**
 ```
 containers:
 - name: nginx
   image: nginx
 ```
 
-### 2.4 Use spaces, not tabs
 
 ## 3. Kubernetes YAML File Structure
 
