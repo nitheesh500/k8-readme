@@ -1,4 +1,4 @@
-# Kubernetes Environment Variables (Beginner Guide)
+# Kubernetes Environment Variables
 
 This guide explains **Environment Variables** in Kubernetes in a simple way.
 
