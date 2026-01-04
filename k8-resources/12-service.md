@@ -20,7 +20,7 @@ We will follow this order:
 ## 📄 Step 1: Pod with Labels
 
 Service works using labels.
-```
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -36,7 +36,7 @@ spec:
 ```
 
 ## 📄 Step 2: Create a Service
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
