@@ -254,9 +254,12 @@ Cloud Controller Manager
         v
 Are annotations present?
         |
-   Yes / No
-    |     |
-    v     v
+        |
+   Yes / \No
+      /    \
+    /       \
+   /         \
+   v          v
 Specified LB   Default LB
 ```
 ## 🎤 Interview-ready explanation
