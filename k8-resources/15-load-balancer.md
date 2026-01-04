@@ -181,6 +181,84 @@ Behind the scenes:
 
 LoadBalancer relies on cloud integration.
 
+
+1️⃣ Who actually chooses the Load Balancer?
+
+The decision is made by:
+```
+Cloud Controller Manager (CCM)
+```
+This component:
+
+- Talks to AWS / Azure / GCP APIs
+- Reads your Service YAML
+- Reads annotations
+- Creates the actual load balancer
+
+📌 Kubernetes core has no logic for ALB vs NLB vs ELB.
+
+---
+## How do you CONTROL which LB is created?
+
+✅ Using Annotations (THIS IS THE KEY)
+
+Annotations are instructions to the cloud provider.
+
+## 🔹 Force AWS NLB
+```yaml
+metadata:
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+```
+
+Result:
+
+- AWS creates Network Load Balancer
+- L4, high performance
+- Static IPs
+
+### 🔹 Internal Load Balancer (private)
+```
+metadata:
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+```
+
+Result:
+
+- No public IP
+- Only VPC access
+
+### 🔹 Control target type (instance vs IP)
+```
+metadata:
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
+```
+
+| Target Type | Meaning                |
+|-------------|------------------------|
+| `instance`  | Traffic → Node → Pod   |
+| `ip`        | Traffic → Pod directly |
+
+## Complete decision flow
+```
+Did you create a Service?
+        |
+        v
+Is type = LoadBalancer?
+        |
+        v
+Cloud Controller Manager
+        |
+        v
+Are annotations present?
+        |
+   Yes / No
+    |     |
+    v     v
+Specified LB   Default LB
+```
 ## 🎤 Interview-ready explanation
 
 - A LoadBalancer Service exposes Kubernetes applications externally by provisioning a cloud provider’s load balancer. Incoming traffic hits the external load balancer, which forwards requests to NodePorts on worker nodes. kube-proxy then routes the traffic to the service’s ClusterIP and load-balances it to healthy Pods. This provides a stable, secure, and scalable production-grade entry point.
