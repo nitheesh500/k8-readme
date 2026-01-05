@@ -183,6 +183,8 @@ ClusterIP Services
   ↓
 Pods
 ```
+By default ingress controller is not installed    
+## [Ingress controler installation procedure](https://github.com/nitheesh500/k8-ingress/blob/main/README.md)
 
 ### 🎤 Interview-ready explanation (LONG & STRONG)
 
