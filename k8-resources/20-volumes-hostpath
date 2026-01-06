@@ -54,11 +54,11 @@ Node Filesystem
       │  (hostPath mount)
       ▼
 Pod
-└── Container 
+└── Container
     └── /host-logs
 ```
 ![Example](hostpath.png)
-
+ 
 ---
 
 ## 📄 Simple `hostPath` Example
