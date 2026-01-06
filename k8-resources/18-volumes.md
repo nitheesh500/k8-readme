@@ -28,3 +28,13 @@ What volumes DO and DO NOT do
 🎤 Interview-ready explanation (baseline)
 
 - Kubernetes volumes provide a way to store and share data for containers inside a Pod. Unlike container filesystems, volumes persist across container restarts and allow multiple containers in a Pod to share data. The exact persistence behavior depends on the volume type used.
+
+## Types
+```
+1️⃣ emptyDir (simplest)  
+2️⃣ hostPath  
+3️⃣ ConfigMap volume  
+4️⃣ Secret volume  
+5️⃣ PersistentVolume & PVC  
+6️⃣ Cloud volumes (EBS, Disk) 
+```
