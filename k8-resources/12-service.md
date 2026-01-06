@@ -80,4 +80,4 @@ If Pod restarts:
 
 ## Types of services
 
-- ![alt text](image.png)
+- ![alt text](service-types.png)

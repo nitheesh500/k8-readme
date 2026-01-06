@@ -21,7 +21,7 @@ You have the **same application** running in:
 - prod
 
 Only a few things change:
-- Environment name
+- Environment name=
 - Database URL
 - Feature flags
 
