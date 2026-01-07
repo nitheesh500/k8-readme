@@ -63,3 +63,8 @@ spec:
       mountPath: /secrets
       readOnly: true
 ```      
+RBAC
+
+## 🎤 Interview-ready explanation
+
+- A Secret volume allows sensitive data like passwords, tokens, and certificates to be securely mounted into a Pod as files. Each key in the Secret becomes a file. Secrets help decouple sensitive data from container images and configuration, and should be protected using RBAC and etcd encryption.
