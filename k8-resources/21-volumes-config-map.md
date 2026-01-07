@@ -1,4 +1,4 @@
-# 📦 Kubernetes ConfigMap (Volume) — Complete Guide
+# 📦 Kubernetes ConfigMap (Volume) 
 
 ## 📌 What is a ConfigMap?
 
