@@ -107,7 +107,8 @@ So the container can:
 
 📌 Data is tied to the node, not the Pod.
 
-### 🏷️ hostPath Types
+---
+## 🏷️ hostPath Types
 | Type                | Description                         |
 |---------------------|-------------------------------------|
 | Directory           | Directory must already exist        |
@@ -120,7 +121,54 @@ Example:
 ```
 type: DirectoryOrCreate
 ```
-✅ Valid Use Cases
+### 1️⃣ File — “File MUST already exist”
+
+- Kubernetes expects the file to already- exist on the node.
+If it does not exist → Pod will FAIL.
+
+Example
+
+Node already has:
+```
+/var/log/app.log
+```
+
+Pod YAML:
+```yaml
+volumes:
+- name: log-file
+  hostPath:
+    path: /var/log/app.log
+    type: File
+```
+What happens?
+
+- Kubernetes checks the node
+- File exists ✅
+- Pod starts successfully
+- File is mounted into container
+
+❌ If /var/log/app.log does NOT exist → Pod fails to start
+
+### 🔶 2️⃣ FileOrCreate — “Create file if missing”
+
+- If the file does not exist, Kubernetes will create an empty file on the node. 
+
+Use File when:
+
+- Log file is already created by system
+- You don’t want Kubernetes touching node filesystem
+- You want strict control
+
+Use FileOrCreate when:
+
+- App needs a log file
+- You’re OK with Kubernetes creating it
+- Temporary / dev use
+
+---
+
+### ✅ Valid Use Cases (Host path)
 
 - ✔️ Log collectors (Fluentd, Filebeat)
 - ✔️ Monitoring agents
