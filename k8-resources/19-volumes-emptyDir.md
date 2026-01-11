@@ -1,6 +1,4 @@
-# 📦 Kubernetes Volumes — emptyDir Explained
-
-This document explains the **`emptyDir` volume** in Kubernetes from **basics to real-world usage**, with clear reasoning and examples.
+# 📦 Kubernetes Volumes — emptyDir
 
 ---
 
@@ -21,11 +19,11 @@ One container **cannot see** files created by another container.
 
 ## ❓ Why Container Filesystem Is Not Enough
 
-| Limitation | Explanation |
-|-----------|------------|
-| Isolated FS | Containers cannot share files |
+| Limitation         | Explanation                    |
+|--------------------|--------------------------------|
+| Isolated FS        | Containers cannot share files  |
 | Restart wipes data | Container restart deletes data |
-| No shared path | Sidecar pattern fails |
+| No shared path     | Sidecar pattern fails          |
 
 📌 Containers are **stateless by default**  
 📌 Shared storage must be **explicitly provided**

@@ -28,7 +28,7 @@ You need real persistent storage.
 ---
 ### What is a PersistentVolume (PV)?
 
->A PersistentVolume is a cluster-level storage resource.
+>A PersistentVolume is a ```cluster-level storage resource````.
 
 Think of it as:
 

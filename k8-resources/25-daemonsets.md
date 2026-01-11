@@ -12,7 +12,7 @@ You want to run:
 
 The requirement:
 
->Each node must have EXACTLY one copy of the Pod
+>Each node must have ```EXACTLY one copy of the Pod```
 
 Questions:
 

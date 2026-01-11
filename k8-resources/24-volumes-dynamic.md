@@ -16,13 +16,13 @@ Old (Static PV) way ❌
 - Pre-decide disk size
 - Map each PVC manually
 
-👉 Impossible to scale
-👉 Slow
+👉 Impossible to scale  
+👉 Slow  
 👉 Operational nightmare
 
 ### What a StorageClass is (Core Concept)
 
->A StorageClass defines how storage should be dynamically created.
+>StorageClass (SC) is used to dynamically create external volumes.
 
 Think of it as:
 
@@ -42,6 +42,10 @@ It tells Kubernetes:
 You do NOT create PV manually anymore.
 
 ##  High-level architecture
+
+```
+StorageClass → creates → External Volume → attached as → PV → used by → Pod
+```
 ```
 Pod
  ↓
@@ -109,26 +113,22 @@ You must install:
 - Ceph CSI
 - EBS CSI (if AWS but self-managed)
 
-👉 No CSI = no dynamic volumes
+👉 ```No CSI``` = ```no dynamic volumes```
 
 ---
 ## Example (AWS-style)
 ### Simple StorageClass 
 ```yaml
 apiVersion: storage.k8s.io/v1
-kind: StorageClass
+kind: StorageClass #“This is a StorageClass object”
 metadata:
-  name: standard-sc
-provisioner: kubernetes.io/aws-ebs
+  name: standard-sc  #Name of the StorageClass, PVC will refer to this name
+provisioner: kubernetes.io/aws-ebs #Use AWS EBS to create the external volume
 parameters:
-  type: gp3
+  type: gp3 #Specifies EBS volume type, gp3 = General Purpose SSD (newer & cheaper than gp2)
 reclaimPolicy: Delete
-volumeBindingMode: WaitForFirstConsumer
+volumeBindingMode: WaitForFirstConsumer  #Create the EBS volume only after the Pod is scheduled
 ```
-
-📌 Provisioner = who creates storage  
-📌 Parameters = disk type  
-📌 ReclaimPolicy = what happens after delete  
 
 ### PVC using StorageClass 
 ```yaml
@@ -137,7 +137,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: app-pvc
 spec:
-  storageClassName: standard-sc
+  storageClassName: standard-sc #PVC will refer to the storage class
   accessModes:
     - ReadWriteOnce
   resources:
@@ -193,10 +193,12 @@ PVC bound
 Pod mounts PVC
 ```
 
-### volumeBindingMode (INTERVIEW FAVORITE)
-Mode	Meaning
-Immediate	Disk created immediately
-WaitForFirstConsumer	Disk created after Pod scheduling
+### volumeBindingMode 
+| Mode                  |        Meaning                      |
+|-----------------------|-------------------------------------|
+| Immediate             | EDisk created immediately           |
+| WaitForFirstConsumer  | Disk created after Pod schedulingauto-installed             |
+
 
 📌 Best practice: WaitForFirstConsumer
 (prevents AZ mismatch in cloud)

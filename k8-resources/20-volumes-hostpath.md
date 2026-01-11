@@ -1,7 +1,12 @@
 # 📦 Kubernetes `hostPath` Volume
 
 ## 📌 Overview
-`hostPath` is a Kubernetes volume type that **mounts a file or directory from the node’s filesystem directly into a Pod**.
+
+
+`hostPath` is a Kubernetes volume that uses a folder from the worker node (VM / EC2 / server) and mounts it inside a Pod.
+
+👉 In short:
+Pod ↔ Node’s local folder
 
 > ⚠️ `hostPath` is powerful but **dangerous** and should be used **only for specific system-level use cases**.
 
